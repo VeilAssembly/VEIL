@@ -1,0 +1,162 @@
+/* --- Global Resets & Base --- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /* Using Montserrat as the primary body font for consistency from example link */
+    font-family: 'Montserrat', 'Arial', sans-serif;
+    background-color: #000000; /* True Black */
+    color: #F0F0F0; /* Ethereal White */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden; /* Prevents scrollbars from background elements */
+    position: relative; /* For pseudo-elements if used for background */
+}
+
+/* --- Background Aesthetics: Ethereal Darkness with Subtle Motion --- */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Behind content */
+    background:
+        radial-gradient(ellipse at center, rgba(26, 26, 26, 0.1) 0%, rgba(16, 16, 32, 0.3) 30%, #050510 100%),
+        linear-gradient(160deg, rgba(10,10,20,0.9) 0%, rgba(0,0,0,1) 70%),
+        linear-gradient(40deg, rgba(20,20,30,0.9) 0%, rgba(0,0,0,1) 70%);
+    background-blend-mode: screen;
+    opacity: 0.8;
+    animation: subtleVeilShift 120s linear infinite alternate;
+}
+
+@keyframes subtleVeilShift {
+    0% {
+        background-position: 0% 0%, 0% 0%, 0% 0%;
+    }
+    100% {
+        background-position: 100% 100%, 50% 50%, -50% -50%;
+    }
+}
+
+/* --- Layout & Structure --- */
+.veil-wrapper {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+}
+
+.content-container {
+    opacity: 0;
+    animation: fadeInContent 2s ease-out 0.5s forwards;
+}
+
+@keyframes fadeInContent {
+    to {
+        opacity: 1;
+    }
+}
+
+/* --- Typography – The Voice of VEIL --- */
+.countdown-timer {
+    font-family: 'Montserrat', 'Arial Narrow', sans-serif; /* Example: Using Google Font */
+    font-size: clamp(2.5rem, 10vw, 5.5rem); /* Adjusted for better mobile view */
+    font-weight: 300;
+    color: #F0F0F0;
+    letter-spacing: 0.08em; /* Adjusted */
+    text-shadow:
+        0 0 8px rgba(240, 240, 240, 0.3), /* Reduced glow for clarity */
+        0 0 15px rgba(240, 240, 240, 0.2);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.countdown-timer span {
+    display: inline-block;
+    min-width: 1.4em; /* Adjusted */
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+.digit-change {
+    animation: subtleDigitFlip 0.6s forwards;
+}
+
+@keyframes subtleDigitFlip {
+    0% { opacity: 0; transform: translateY(-8px); } /* Adjusted animation */
+    50% { opacity: 0.7; transform: translateY(4px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.iykyk-text {
+    font-family: 'Source Code Pro', 'Courier New', monospace; /* Example: Using Google Font */
+    font-size: clamp(0.9rem, 3vw, 1.3rem); /* Adjusted */
+    color: #C0C0C0;
+    text-transform: uppercase;
+    letter-spacing: 0.12em; /* Adjusted */
+    margin-top: 15px; /* Adjusted */
+    opacity: 0;
+    animation: fadeInIYKYK 1.5s ease-out 2s forwards;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+@keyframes fadeInIYKYK {
+    to {
+        opacity: 1;
+    }
+}
+
+.veil-brand-mark {
+    position: absolute;
+    top: 20px; /* Adjusted for mobile */
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.7rem, 1.5vw, 0.9rem); /* Adjusted */
+    font-weight: 300;
+    color: rgba(240, 240, 240, 0.2);
+    letter-spacing: 0.08em; /* Adjusted */
+    opacity: 0;
+    animation: fadeInBrandMark 3s ease-in-out 3s forwards, pulseBrandMark 10s infinite alternate ease-in-out 6s;
+}
+
+@keyframes fadeInBrandMark {
+    to { opacity: 1; }
+}
+
+@keyframes pulseBrandMark {
+    0% { color: rgba(240, 240, 240, 0.1); }
+    50% { color: rgba(240, 240, 240, 0.3); }
+    100% { color: rgba(240, 240, 240, 0.1); }
+}
+
+.countdown-timer:hover,
+.iykyk-text:hover {
+    color: #FFFFFF;
+    text-shadow:
+        0 0 12px rgba(240, 240, 240, 0.5), /* Adjusted hover glow */
+        0 0 25px rgba(240, 240, 240, 0.3);
+}
+
+@media (max-width: 480px) {
+    .countdown-timer {
+        letter-spacing: 0.05em;
+    }
+    .iykyk-text {
+        letter-spacing: 0.1em;
+        margin-top: 10px;
+    }
+    .veil-brand-mark {
+        top: 15px;
+    }
+}
