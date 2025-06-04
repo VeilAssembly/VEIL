@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Configuration ---
     // SET YOUR TARGET DATE AND TIME HERE!
     // Format: "Month Day, Year HH:MM:SS" (e.g., "December 31, 2025 23:59:59")
-    const countdownUntil = "December 31, 2025 23:59:59"; // <--- CHANGE THIS!
+    const countdownUntil = "July 14, 2025 23:59:59"; // <--- CHANGE THIS!
 
     const daysEl = document.getElementById('days');
     const hoursEl = document.getElementById('hours');
